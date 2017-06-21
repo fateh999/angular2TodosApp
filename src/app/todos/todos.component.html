@@ -1,0 +1,42 @@
+
+<div>
+  <div class="container">
+
+<div *ngIf="appState == 'default'">
+<h1 class="text-center text-info">Add Todo</h1>
+<form (submit)="addTodo()" class="col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-2 col-lg-8">
+<div class="input-group">
+  <input class="form-control" type="text" name="todoText"  required [(ngModel)]="textTodo"/>
+  <span class="input-group-btn">
+    <button class="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </span>
+</div>
+</form>
+</div>
+
+<div *ngIf="appState == 'edit'">
+<h1 class="text-center text-info">Edit Todo <span (click)="setState()" class="btn btn-primary glyphicon glyphicon-chevron-left" style="float:left"></span></h1>
+<form (submit)="updateTodo()"  class="col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-2 col-lg-8">
+<div class="input-group">
+  <input class="form-control" type="text" name="todoText" required [(ngModel)]="textTodo"/>
+  <span class="input-group-btn">
+    <button class="btn btn-info" type="submit">
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
+  </span>
+</div>
+</form>
+</div>
+<br>
+<br>
+<br>
+<h4 class="text-center text-success"><b>Todo Lists</b></h4>
+<div *ngFor="let todo of todos" class="col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-2 col-lg-8 alert alert-info alert-dismissable">
+   <a href="#" class="close" style=" color:red;opacity: 0.4;" data-dismiss="alert" aria-label="close" (click)="deleteTodo(todo.id)">&times;</a>
+   <span (click)="editTodo(todo)">{{todo.text}}</span>
+</div>
+
+  </div>
+</div>
