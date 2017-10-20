@@ -14,11 +14,17 @@ export class TodosComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.todos = JSON.parse( localStorage.getItem('todos') );
+    if(localStorage.getItem('todos')){
+      this.todos = JSON.parse( localStorage.getItem('todos') );
+    }
+    else{
+      this.todos = [];
+    }
   }
 
   addTodo(){
     if(this.textTodo!=null){
+      console.log(this.textTodo);
     this.todos.push({
       id:   Object.keys(this.todos).length == null ? 1 : Object.keys(this.todos).length + 1,
       text: this.textTodo
